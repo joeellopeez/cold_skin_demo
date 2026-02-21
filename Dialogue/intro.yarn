@@ -1,0 +1,55 @@
+﻿title: Variables
+---
+<<declare $bookRead = false>>
+<<declare $grunerTrust = 0>>
+===
+
+title: object_old_book
+---
+Player: It’s a weathered notebook. The cover says "Meteorological Log," but the owner's name has been violently scratched out.
+
+-> Open the book
+    Player: The last pages aren't weather charts... they're sketches. Webbed hands, claw marks, and the word "FORGIVE" scrawled over and over.
+    <<set $bookRead = true>>
+-> Leave it on the table
+    Player: Not my business. I’m here to record the wind, not read a dead man's diary.
+    <<set $bookRead = false>>
+
+Player: I hear heavy boots on the stairs above. Someone is coming down.
+<<jump Start>>
+===
+
+title: Start
+---
+Gruner: You’re late. The sun is already touching the water, and that means the time for talk has run out.
+
+<<if $bookRead>>
+    -> You must be Gruner. I found a book... it mentions...
+        Gruner: (Interrupting) You found the ravings of a man who let the silence break him. If you want to last longer than he did, close the books and open your eyes to your rifle.
+    -> What happens when the sun goes down?
+        Gruner: Reality happens. The kind they don't teach you in your observer manuals.
+<<else>>
+    -> I’m the new observer. Where do I put my gear?
+        Gruner: Put it where it won’t get in the way. And get ready. In this lighthouse, the job isn't watching clouds—it's keeping the door bolted.
+    -> Who are you? 
+        Gruner: The man who’s going to keep you alive tonight. That’s all you need to know.
+<<endif>>
+
+Gruner: Come. There’s something in the back room you need to see. She won’t bite... as long as I’m standing here.
+===
+
+title: meeting_aneris
+---
+Gruner: Her name is Aneris. One of "them." I found her wounded, and I keep her to understand how they think. Don't turn your back on her. Ever.
+
+-> One of them? She looks... almost human.
+    Gruner: That’s what they want you to think. It’s their best weapon. Mercy is the poison of this island.
+    <<set $grunerTrust += 1>>
+-> Why is she chained up like this?
+    Gruner: For the same reason we put locks on doors. To keep the outside world from getting in.
+    <<set $grunerTrust -= 1>>
+
+<<if $bookRead>>
+    Player: (To himself) The logbook... the previous man wrote that she... she nursed him when he was sick. Who is lying here?
+<<endif>>
+===
